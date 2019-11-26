@@ -9,3 +9,5 @@
 5. 安装`koa-generic-session`和 `koa-redis` 操作`session`和`redis`
 6. 安装`jest` 用于测试，配置`test`运行环境，`--runInBand` 一个一个测试执行，`--forceExit` 测试完退出,`--colors` 测试代码高亮
 7. 安装`supertest` 做`http`测试
+8. 安装`eslint` 和 `babel-eslint` 做代码检查
+9. 安装`pre-commit` 可以指定代码提交前执行`lint`,强制代码规范检查

@@ -37,7 +37,7 @@ function get (key) {
         reject(err)
         return
       }
-      if(val === null || val === undefined) {
+      if (val === null || val === undefined) {
         resolve(null)
         return
       }
