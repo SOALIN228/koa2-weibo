@@ -7,9 +7,11 @@ const bodyparser = require('koa-bodyparser')
 const logger = require('koa-logger')
 const session = require('koa-generic-session')
 const redisStore = require('koa-redis')
+// const jwtKoa = require('koa-jwt')
 
 const { isProd } = require('./utils/env')
 const { REDIS_CONFIG } = require('./config/db')
+// const { SECRET } = require('./config/constants')
 
 const index = require('./routes')
 const users = require('./routes/users')
@@ -17,6 +19,12 @@ const errorViewRouter = require('./routes/view/error')
 
 // error handler
 onerror(app)
+
+// app.use(jwtKoa({
+//   secret: SECRET
+// }).unless({
+//   path: [/^\/users\/login/] // 忽略验证目录
+// }))
 
 // middlewares
 app.use(bodyparser({

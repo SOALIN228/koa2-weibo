@@ -2,10 +2,10 @@
     <button id="btn-load-more" type="button" class="btn btn-sm btn-lg btn-block">点击加载更多</button>
 </div>
 
-<script type="ejx">
-var PAGE_SIZE = <%= pageSize %>
-var PAGE_INDEX = <%= pageIndex %>
-var COUNT = <%= count %>
+<script>
+var PAGE_SIZE = '<%= pageSize %>'
+var PAGE_INDEX = '<%= pageIndex %>'
+var COUNT = '<%= count %>'
 var $btnLoadMore = $('#btn-load-more')
 var $containerWeiboList = $('<%= containerSelector %>')
 var api = '<%= api %>'
