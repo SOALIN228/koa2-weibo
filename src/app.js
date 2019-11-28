@@ -8,10 +8,12 @@ const logger = require('koa-logger')
 const session = require('koa-generic-session')
 const redisStore = require('koa-redis')
 
+const { isProd } = require('./utils/env')
 const { REDIS_CONFIG } = require('./config/db')
 
 const index = require('./routes')
 const users = require('./routes/users')
+const errorViewRouter = require('./routes/view/error')
 
 // error handler
 onerror(app)
@@ -46,6 +48,16 @@ app.use(session({
 // routes
 app.use(index.routes(), index.allowedMethods())
 app.use(users.routes(), users.allowedMethods())
+app.use(errorViewRouter.routes(), errorViewRouter.allowedMethods())
+
+// error handler
+let onerrorConfig = {}
+if (isProd) {
+  onerrorConfig = { // 出错自动跳转到错误页
+    redirect: '/error'
+  }
+}
+onerror(app, onerrorConfig)
 
 // error-handling
 app.on('error', (err, ctx) => {

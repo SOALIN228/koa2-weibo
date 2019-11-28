@@ -11,3 +11,4 @@
 7. 安装`supertest` 做`http`测试
 8. 安装`eslint` 和 `babel-eslint` 做代码检查
 9. 安装`pre-commit` 可以指定代码提交前执行`lint`,强制代码规范检查
+10. 添加`--inspect` 可以启动chrome调试模式(`chrome://inspect`)，通过debugger来更好的找出问题,端口默认是9229
