@@ -4,6 +4,7 @@
  * @date 2019/11/28 19:16
  */
 const router = require('koa-router')()
+
 router.get('/error', async (ctx, next) => {
   await ctx.render('error')
 })
