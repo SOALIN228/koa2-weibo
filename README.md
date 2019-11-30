@@ -97,5 +97,9 @@
 
 14. 安装`ajv` 做数据格式校验
 
+15. 安装`formidable-upload-koa` 做文件上传
+
+16. 安装 `fs-extra` 做文件操作，`fs-extra`依赖于原生`fs`,做了`promise` 扩展
+
 
 
