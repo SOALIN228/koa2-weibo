@@ -61,7 +61,7 @@
       },
       error: function (error) {
         // 错误
-        callback(error.message)
+        callback(error.message || error.statusText)
       }
     })
   }
@@ -84,7 +84,7 @@
       },
       error: function (error) {
         // 错误
-        callback(error.message)
+        callback(error.message || error.statusText)
       }
     })
   }
