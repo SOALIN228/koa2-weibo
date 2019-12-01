@@ -57,12 +57,12 @@ test('创建一条微博, 期望成功', async () => {
   BLOG_ID = res.body.data.id
 })
 
-// test('删除用户，期望成功', async () => {
-//   const res = await server
-//     .post('/api/user/delete')
-//     .set('cookie', COOKIE)
-//   expect(res.body.errno).toBe(0)
-// })
+test('删除用户，期望成功', async () => {
+  const res = await server
+    .post('/api/user/delete')
+    .set('cookie', COOKIE)
+  expect(res.body.errno).toBe(0)
+})
 
 test('退出登录，期望成功', async () => {
   const res = await server
