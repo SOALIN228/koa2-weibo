@@ -101,5 +101,5 @@
 
 16. 安装 `fs-extra` 做文件操作，`fs-extra`依赖于原生`fs`,做了`promise` 扩展
 
-
+17. 安装`xss` 预防xss攻击
 
