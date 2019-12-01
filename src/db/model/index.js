@@ -4,7 +4,13 @@
  * @date 2019/11/29 17:28
  */
 const User = require('./User')
+const Blog = require('./Blog')
+
+Blog.belongsTo(User, {
+  foreignKey: 'userId'
+})
 
 module.exports = {
-  User
+  User,
+  Blog
 }
