@@ -18,6 +18,7 @@ const { SESSION_SECRET_KEY } = require('./config/secretKeys')
 
 const blogViewRouter = require('./routes/view/blog')
 const HomeAPIRouter = require('./routes/api/blog-home')
+const profileAPIRouter = require('./routes/api/blog-profile')
 const userViewRouter = require('./routes/view/user')
 const userAPIRouter = require('./routes/api/user')
 const utilsAPIRouter = require('./routes/api/utils')
@@ -63,6 +64,7 @@ app.use(session({
 // routes
 app.use(blogViewRouter.routes(), blogViewRouter.allowedMethods())
 app.use(HomeAPIRouter.routes(), HomeAPIRouter.allowedMethods())
+app.use(profileAPIRouter.routes(), profileAPIRouter.allowedMethods())
 app.use(userViewRouter.routes(), userViewRouter.allowedMethods())
 app.use(userAPIRouter.routes(), userAPIRouter.allowedMethods())
 app.use(utilsAPIRouter.routes(), utilsAPIRouter.allowedMethods())
