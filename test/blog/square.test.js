@@ -4,12 +4,12 @@
  * @date 2019/12/3 13:39
  */
 const server = require('../server')
-const { COOKIE, USER_NAME } = require('../testUserInfo')
+const { COOKIE_1, USER_NAME_1 } = require('../testUserInfo')
 
 test('广场，加载第一页数据，期望成功', async () => {
   const res = await server
     .get(`/api/square/loadMore/0`)
-    .set('cookie', COOKIE)
+    .set('cookie', COOKIE_1)
   expect(res.body.errno).toBe(0)
 
   const data = res.body.data
