@@ -46,6 +46,10 @@ router.get('/profile/:userName', loginRedirect, async (ctx, next) => {
   // 获取粉丝
   const fansResult = await getFans(curUserInfo.id)
   const { count: fansCount, userList: fansList } = fansResult.data
+  // 是否关注
+  const amIFollowed = fansList.some(item => {
+    return item.userName === myUserName
+  })
 
   await ctx.render('profile', {
     blogData: {
@@ -61,7 +65,8 @@ router.get('/profile/:userName', loginRedirect, async (ctx, next) => {
       fansData: {
         count: fansCount,
         list: fansList
-      }
+      },
+      amIFollowed
     }
   })
 })
