@@ -3,7 +3,7 @@
  * @author SOALIN
  * @date 2019/12/3 14:36
  */
-const { getUsersByFollower, addFollower, deleteFollower } = require('../services/user-relation')
+const { getUsersByFollower, getFollowersByUser, addFollower, deleteFollower } = require('../services/user-relation')
 const { SuccessModel, ErrorModel } = require('../model/ResModel')
 const { addFollowerFailInfo, deleteFollowerFailInfo } = require('../model/ErrorInfo')
 
@@ -18,6 +18,20 @@ async function getFans (userId) {
   return new SuccessModel({
     count,
     userList
+  })
+}
+
+/**
+ * 获取关注人列表
+ * @param userId
+ * @return {Promise<void>}
+ */
+async function getFollowers (userId) {
+  const { count, userList } = await getFollowersByUser(userId)
+
+  return new SuccessModel({
+    count,
+    list: userList
   })
 }
 
@@ -53,6 +67,7 @@ async function unFollow (myUserId, curUserId) {
 
 module.exports = {
   getFans,
+  getFollowers,
   follow,
   unFollow
 }
