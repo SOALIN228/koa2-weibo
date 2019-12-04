@@ -3,7 +3,7 @@
  * @author SOALIN
  * @date 2019/11/29 23:23
  */
-const { DEFAULT_PICTURE } = require('../config/constants')
+const { DEFAULT_PICTURE, REG_FOR_AT_WHO } = require('../config/constants')
 const { timeFormat } = require('../utils/dt')
 
 /**
@@ -21,11 +21,30 @@ function _formatUserPicture (obj) {
 
 /**
  * 格式化数据的时间
- * @param {Object} obj 数据
+ * @param obj
+ * @return {*}
+ * @private
  */
 function _formatDBTime (obj) {
   obj.createdAtFormat = timeFormat(obj.createdAt)
   obj.updatedAtFormat = timeFormat(obj.updatedAt)
+  return obj
+}
+
+/**
+ * 格式化微博内容
+ * @param obj
+ * @return {*}
+ * @private
+ */
+function _formatContent (obj) {
+  obj.contentFormat = obj.content
+  obj.contentFormat = obj.contentFormat.replace(
+    REG_FOR_AT_WHO,
+    (matchStr, nickName, userName) => {
+      return `<a href="/profile/${userName}">@${nickName}</a>`
+    }
+  )
   return obj
 }
 
@@ -58,11 +77,12 @@ function formatBlog (list) {
 
   if (list instanceof Array) {
     // 数组
-    return list.map(_formatDBTime)
+    return list.map(_formatDBTime).map(_formatContent)
   }
   // 对象
   let result = list
   result = _formatDBTime(result)
+  result = _formatContent(result)
   return result
 }
 
