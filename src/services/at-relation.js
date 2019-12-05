@@ -79,8 +79,38 @@ async function getAtUserBlogList ({ userId, pageIndex, pageSize = 10 }) {
   }
 }
 
+/**
+ * 更新 AtRelation
+ * @param newIsRead 更新内容 是否已读
+ * @param userId 查询条件 id
+ * @param isRead 查询条件 是否已读
+ * @return {Promise<void>}
+ */
+async function updateAtRelation ({ newIsRead }, { userId, isRead }) {
+  const updateData = {}
+  // 更新内容
+  if (newIsRead) {
+    updateData.isRead = newIsRead
+  }
+  // 查询条件
+  const whereData = {}
+  if (userId) {
+    whereData.userId = userId
+  }
+  if (isRead) {
+    whereData.isRead = isRead
+  }
+
+  const result = await AtRelation.update(updateData, {
+    where: whereData
+  })
+
+  return result[0] > 0
+}
+
 module.exports = {
   createAtRelation,
   getAtRelationCount,
-  getAtUserBlogList
+  getAtUserBlogList,
+  updateAtRelation
 }
