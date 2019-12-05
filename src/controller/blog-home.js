@@ -20,7 +20,7 @@ const { PAGE_SIZE, REG_FOR_AT_WHO } = require('../config/constants')
 async function create ({ userId, content, image }) {
   // 分析并收集 content 中的 @ 用户
   // content 格式如 '哈喽 @李四 - lisi 你好 @王五 - wangwu '
-  const atUserNameList = []
+  let atUserNameList = []
   content = content.replace(
     REG_FOR_AT_WHO,
     (matchStr, nickName, userName) => {
@@ -29,6 +29,8 @@ async function create ({ userId, content, image }) {
       return matchStr // 替换不生效，预期
     }
   )
+  // 数组去重，避免多次 @ 时，同一用户产生多条 @ 记录
+  atUserNameList = Array.from(new Set(atUserNameList))
 
   // 根据 @ 用户名查询用户信息
   const atUserList = await Promise.all(
