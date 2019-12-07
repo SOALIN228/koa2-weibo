@@ -11,7 +11,8 @@ const { host, user, password, database } = MYSQL_CONFIG
 
 const config = {
   host,
-  dialect: 'mysql'
+  dialect: 'mysql',
+  timezone: '+08:00' // 设为北京时间
 }
 
 if (isTest) { // 测试环境不打印sql

@@ -78,7 +78,13 @@ app.use(errorViewRouter.routes(), errorViewRouter.allowedMethods())
 let onerrorConfig = {}
 if (isProd) {
   onerrorConfig = { // 出错自动跳转到错误页
-    redirect: '/error'
+    redirect: '/error',
+    json () {
+      this.status = 500
+      this.body = {
+        message: 'error'
+      }
+    }
   }
 }
 onerror(app, onerrorConfig)

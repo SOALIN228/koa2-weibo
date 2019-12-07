@@ -16,7 +16,10 @@ function genValidator (validateFn) {
     const data = ctx.request.body
     const error = validateFn(data)
     if (error) { // 验证失败
-      ctx.body = new ErrorModel(jsonSchemaFileInfo)
+      ctx.body = new ErrorModel({
+        errno: jsonSchemaFileInfo.errno,
+        message: error.message || jsonSchemaFileInfo.message
+      })
       return
     }
     await next() // 验证成功，执行下一步
